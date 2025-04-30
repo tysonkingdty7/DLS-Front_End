@@ -54,23 +54,6 @@
             placeholder="أدخل رقم الهاتف">
         </div>
 
-        <div class="form-group">
-          <label for="userType">نوع المستخدم</label>
-          <select 
-            id="userType" 
-            formControlName="userType"
-            class="form-control"
-            [class.is-invalid]="registerForm.get('userType')?.invalid && registerForm.get('userType')?.touched">
-            <option value="">اختر نوع المستخدم</option>
-            <option value="Customer">عميل</option>
-            <option value="Vendor">بائع</option>
-            <option value="Admin">مدير</option>
-          </select>
-          <div class="invalid-feedback" *ngIf="registerForm.get('userType')?.invalid && registerForm.get('userType')?.touched">
-            يرجى اختيار نوع المستخدم
-          </div>
-        </div>
-
         <div class="error-message" *ngIf="error">
           {{error}}
         </div>

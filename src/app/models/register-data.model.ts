@@ -4,5 +4,4 @@ export interface RegisterData {
   password: string;
   phone?: string;
   userType: string;
-  roles?: string[];
 } 
