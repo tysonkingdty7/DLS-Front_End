@@ -1,0 +1,54 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <h2 class="auth-title">تسجيل الدخول</h2>
+    
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form">
+      <div class="form-group">
+        <label for="Email">البريد الإلكتروني</label>
+        <input
+          type="email"
+          id="Email"
+          formControlName="Email"
+          class="form-control"
+          [ngClass]="{'is-invalid': loginForm.get('Email')?.invalid && loginForm.get('Email')?.touched}"
+        >
+        <div class="invalid-feedback" *ngIf="loginForm.get('Email')?.invalid && loginForm.get('Email')?.touched">
+          <span *ngIf="loginForm.get('Email')?.errors?.['required']">البريد الإلكتروني مطلوب</span>
+          <span *ngIf="loginForm.get('Email')?.errors?.['email']">البريد الإلكتروني غير صالح</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="Password">كلمة المرور</label>
+        <input
+          type="password"
+          id="Password"
+          formControlName="Password"
+          class="form-control"
+          [ngClass]="{'is-invalid': loginForm.get('Password')?.invalid && loginForm.get('Password')?.touched}"
+        >
+        <div class="invalid-feedback" *ngIf="loginForm.get('Password')?.invalid && loginForm.get('Password')?.touched">
+          <span *ngIf="loginForm.get('Password')?.errors?.['required']">كلمة المرور مطلوبة</span>
+          <span *ngIf="loginForm.get('Password')?.errors?.['minlength']">كلمة المرور يجب أن تكون 6 أحرف على الأقل</span>
+        </div>
+      </div>
+
+      <div class="error-message" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <button 
+        type="submit" 
+        class="btn btn-primary" 
+        [disabled]="loginForm.invalid || isLoading"
+      >
+        <span *ngIf="!isLoading">تسجيل الدخول</span>
+        <span *ngIf="isLoading">جاري تسجيل الدخول...</span>
+      </button>
+
+      <div class="auth-links">
+        <a routerLink="/auth/register">إنشاء حساب جديد</a>
+      </div>
+    </form>
+  </div>
+</div> 

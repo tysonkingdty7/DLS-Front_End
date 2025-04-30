@@ -1,0 +1,93 @@
+<div class="register-container">
+  <div class="register-card">
+    <div class="register-header">
+      <h2>إنشاء حساب جديد</h2>
+    </div>
+    
+    <div class="register-body">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+        <div class="form-group">
+          <label for="username">اسم المستخدم</label>
+          <input 
+            type="text" 
+            id="username" 
+            formControlName="username"
+            placeholder="أدخل اسم المستخدم"
+            [class.is-invalid]="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+          <div class="invalid-feedback" *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+            يجب أن يكون اسم المستخدم 3 أحرف على الأقل
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">البريد الإلكتروني</label>
+          <input 
+            type="email" 
+            id="email" 
+            formControlName="email"
+            placeholder="أدخل البريد الإلكتروني"
+            [class.is-invalid]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+          <div class="invalid-feedback" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+            يرجى إدخال بريد إلكتروني صحيح
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">كلمة المرور</label>
+          <input 
+            type="password" 
+            id="password" 
+            formControlName="password"
+            placeholder="أدخل كلمة المرور"
+            [class.is-invalid]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+          <div class="invalid-feedback" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+            يجب أن تكون كلمة المرور 6 أحرف على الأقل
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">رقم الهاتف</label>
+          <input 
+            type="tel" 
+            id="phone" 
+            formControlName="phone"
+            placeholder="أدخل رقم الهاتف">
+        </div>
+
+        <div class="form-group">
+          <label for="userType">نوع المستخدم</label>
+          <select 
+            id="userType" 
+            formControlName="userType"
+            class="form-control"
+            [class.is-invalid]="registerForm.get('userType')?.invalid && registerForm.get('userType')?.touched">
+            <option value="">اختر نوع المستخدم</option>
+            <option value="Customer">عميل</option>
+            <option value="Vendor">بائع</option>
+            <option value="Admin">مدير</option>
+          </select>
+          <div class="invalid-feedback" *ngIf="registerForm.get('userType')?.invalid && registerForm.get('userType')?.touched">
+            يرجى اختيار نوع المستخدم
+          </div>
+        </div>
+
+        <div class="error-message" *ngIf="error">
+          {{error}}
+        </div>
+
+        <button 
+          type="submit" 
+          class="submit-btn"
+          [disabled]="registerForm.invalid || loading">
+          <span *ngIf="!loading">تسجيل</span>
+          <span *ngIf="loading" class="spinner"></span>
+          <span *ngIf="loading">جاري التسجيل...</span>
+        </button>
+      </form>
+
+      <div class="login-link">
+        <p>لديك حساب بالفعل؟ <a routerLink="/login">تسجيل الدخول</a></p>
+      </div>
+    </div>
+  </div>
+</div> 

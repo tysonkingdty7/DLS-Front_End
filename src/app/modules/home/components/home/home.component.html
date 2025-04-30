@@ -1,0 +1,52 @@
+<nav class="navbar">
+  <div class="container">
+    <a class="navbar__brand" routerLink="/">
+      <span class="brand-primary">متجر</span><span class="brand-secondary">نا</span>
+    </a>
+    <button class="navbar__toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar__toggler-icon"></span>
+    </button>
+    <div class="navbar__collapse" id="navbarNav">
+      <ul class="navbar__nav">
+        <li class="navbar__item">
+          <a class="navbar__link" routerLink="/products" routerLinkActive="active">
+            <i class="fas fa-shopping-bag ml-2"></i>
+            المنتجات
+          </a>
+        </li>
+        <li class="navbar__item" *ngIf="isAdmin">
+          <a class="navbar__btn navbar__btn--primary" routerLink="/admin/dashboard">
+            <i class="fas fa-chart-line ml-2"></i>
+            لوحة التحكم
+          </a>
+        </li>
+      </ul>
+      <div class="navbar__auth">
+        <ng-container *ngIf="!isLoggedIn; else loggedInTemplate">
+          <a routerLink="/auth/login" class="navbar__btn navbar__btn--outline">
+            <i class="fas fa-sign-in-alt ml-2"></i>
+            تسجيل دخول
+          </a>
+          <a routerLink="/auth/register" class="navbar__btn navbar__btn--primary">
+            <i class="fas fa-user-plus ml-2"></i>
+            حساب جديد
+          </a>
+        </ng-container>
+        <ng-template #loggedInTemplate>
+          <button (click)="logout()" class="navbar__btn navbar__btn--danger">
+            <i class="fas fa-sign-out-alt ml-2"></i>
+            تسجيل خروج
+          </button>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="home">
+  <div class="home__welcome">
+    <h1 class="home__title">مرحباً بك في متجرنا</h1>
+    <p class="home__subtitle">نقدم لك أفضل المنتجات بأفضل الأسعار</p>
+    <p class="home__message">استمتع بتجربة تسوق فريدة مع خدمة عملاء متميزة</p>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="product-list-container">
+  <div class="search-container">
+    <form [formGroup]="filterForm" (ngSubmit)="onFilterChange()">
+      <div class="search-input-container">
+        <input
+          type="text"
+          formControlName="search"
+          class="search-input"
+          placeholder="Search products..."
+          (input)="onFilterChange()"
+        />
+        <select
+          formControlName="category"
+          class="category-select"
+          (change)="onFilterChange()"
+        >
+          <option value="">All Categories</option>
+          <option *ngFor="let category of categories" [value]="category">
+            {{ category }}
+          </option>
+        </select>
+      </div>
+    </form>
+  </div>
+
+  <div class="products-grid" *ngIf="!loading; else loadingTemplate">
+    <div class="product-card" *ngFor="let product of products">
+      <img [src]="product.image" [alt]="product.name" class="product-image" />
+      <div class="product-info">
+        <h3 class="product-title">{{ product.name }}</h3>
+        <p class="product-price">${{ product.price }}</p>
+        <p class="product-description">{{ product.description }}</p>
+        <button class="add-to-cart-btn" (click)="addToCart(product)">
+          Add to Cart
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #loadingTemplate>
+    <div class="loading-container">
+      <div class="loading-spinner"></div>
+      <p>Loading products...</p>
+    </div>
+  </ng-template>
+</div> 

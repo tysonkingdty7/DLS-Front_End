@@ -1,0 +1,30 @@
+.cart-table {
+  margin-top: 20px;
+}
+
+.cart-item-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.quantity-control {
+  width: 120px;
+}
+
+.total-section {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.empty-cart-message {
+  text-align: center;
+  padding: 40px;
+}
+
+.checkout-btn {
+  margin-top: 20px;
+} 

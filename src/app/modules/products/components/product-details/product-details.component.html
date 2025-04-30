@@ -1,0 +1,39 @@
+<div class="product-details-container" *ngIf="!loading; else loadingTemplate">
+  <div class="product-details" *ngIf="product">
+    <div class="product-image-container">
+      <img [src]="product.image" [alt]="product.name" class="product-image">
+    </div>
+    <div class="product-info">
+      <h1 class="product-title">{{ product.name }}</h1>
+      <div class="product-price-container">
+        <span class="product-price">${{ product.price }}</span>
+        <span *ngIf="product.discount" class="product-discount">
+          -{{ product.discount }}%
+        </span>
+      </div>
+      <p class="product-description">{{ product.description }}</p>
+      <div class="product-stock">
+        <span [ngClass]="{'in-stock': product.stock > 0, 'out-of-stock': product.stock === 0}">
+          {{ product.stock > 0 ? 'متوفر في المخزون' : 'غير متوفر' }}
+        </span>
+      </div>
+      <div class="product-actions">
+        <div class="quantity-controls">
+          <button (click)="quantity = quantity > 1 ? quantity - 1 : 1">-</button>
+          <span>{{ quantity }}</span>
+          <button (click)="quantity = quantity + 1">+</button>
+        </div>
+        <button class="add-to-cart-btn" (click)="addToCart()" [disabled]="product.stock === 0">
+          أضف إلى السلة
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingTemplate>
+  <div class="loading-container">
+    <div class="loading-spinner"></div>
+    <p>جاري تحميل تفاصيل المنتج...</p>
+  </div>
+</ng-template> 

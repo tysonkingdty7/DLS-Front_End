@@ -1,0 +1,34 @@
+<div class="cart-management">
+  <h2>إدارة السلات</h2>
+  
+  <div *ngIf="loading" class="loading">
+    جاري التحميل...
+  </div>
+
+  <div *ngIf="!loading" class="carts-list">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>رقم السلة</th>
+          <th>المستخدم</th>
+          <th>عدد المنتجات</th>
+          <th>المجموع</th>
+          <th>تاريخ الإنشاء</th>
+          <th>الإجراءات</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cart of carts">
+          <td>{{ cart.id }}</td>
+          <td>{{ cart.userId || 'غير محدد' }}</td>
+          <td>{{ cart.items.length }}</td>
+          <td>{{ cart.total | currency }}</td>
+          <td>{{ cart.createdAt | date:'short' }}</td>
+          <td>
+            <button class="btn btn-view" (click)="viewCartDetails(cart)">عرض التفاصيل</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div> 

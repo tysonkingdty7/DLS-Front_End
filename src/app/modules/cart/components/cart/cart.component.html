@@ -1,0 +1,28 @@
+<div class="cart-container" *ngIf="cart">
+  <h2>سلة التسوق</h2>
+  
+  <div *ngIf="cart.items.length === 0" class="empty-cart">
+    <p>سلة التسوق فارغة</p>
+  </div>
+
+  <div *ngIf="cart.items.length > 0" class="cart-items">
+    <div *ngFor="let item of cart.items" class="cart-item">
+      <img [src]="item.product.image" [alt]="item.product.name" class="item-image">
+      <div class="item-details">
+        <h3>{{ item.product.name }}</h3>
+        <p class="price">${{ item.product.price }}</p>
+        <div class="quantity-controls">
+          <button (click)="updateQuantity(item.product.id, item.quantity - 1)">-</button>
+          <span>{{ item.quantity }}</span>
+          <button (click)="updateQuantity(item.product.id, item.quantity + 1)">+</button>
+        </div>
+        <button class="remove-btn" (click)="removeItem(item.product.id)">إزالة</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="cart.items.length > 0" class="cart-summary">
+    <h3>المجموع: ${{ cart.total }}</h3>
+    <button class="clear-btn" (click)="clearCart()">مسح السلة</button>
+  </div>
+</div> 
